@@ -3,6 +3,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 const bodyParser = require('body-parser');
+const cors = require("./config/cors");
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use( express.json() );
 app.use( '/api', userRoutes );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: 'true'} ) );
+app.use(cors);
 
 
 mongoose.set('strictQuery', false);
