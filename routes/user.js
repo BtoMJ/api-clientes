@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const userSchema = require('../models/user');
-const cors = require("cors");
-const corss = require("./config/cors");
 
 //create user
-router.post( '/users/adduser', cors(corss), ( req,res ) => {
+router.post( '/users/adduser', ( req,res ) => {
     const user = userSchema( {
                     name : req.body.name,
                     age: req.body.age,
