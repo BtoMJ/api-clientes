@@ -3,8 +3,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 const bodyParser = require('body-parser');
-const cors = require("./config/cors");
-const corsc = require("cors");
+const corConfig = require("./config/cors");
+const cors = require("cors");
 
 const app = express();
 
@@ -16,8 +16,8 @@ app.use( express.json() );
 app.use( '/api', userRoutes );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: 'true'} ) );
-app.use(cors);
-app.use(corsc());
+app.use(corConfig);
+app.use(cors());
 
 
 mongoose.set('strictQuery', false);
@@ -36,3 +36,5 @@ app.get('/', ( req, res )=>{
 app.listen( 3001, function(){
     console.log('Server Listening Correctly on Port', port);
 } )
+
+module.exports = app;
