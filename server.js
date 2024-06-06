@@ -23,7 +23,12 @@ app.use( '/api', userRoutes );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: 'true'} ) );
 app.use(corConfig);
-app.use(cors());
+app.use(cors({
+    origin: ['https://abyclientes-production.up.railway.app'],
+    // origin: ['http:/localhost:5173'],
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 mongoose.set('strictQuery', false);
 
