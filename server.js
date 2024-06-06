@@ -13,25 +13,11 @@ const port = process.env.PORT || 3001;
 
 //middleware
 app.use( express.json() );
-// app.use( '/api', userRoutes );
+app.use( '/api', userRoutes );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: 'true'} ) );
 app.use(corConfig);
 app.use(cors());
-
-app.get('/api', (req, res) => {
-    request(
-      { url: 'https://api-clientes-production-140a.up.railway.app' },
-      (error, response, body) => {
-        if (error || response.statusCode !== 200) {
-          return res.status(500).json({ type: 'error', message: err.message });
-        }
-  
-        res.json(JSON.parse(body));
-      }
-    )
-  });
-
 
 mongoose.set('strictQuery', false);
 

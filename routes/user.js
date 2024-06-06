@@ -18,12 +18,25 @@ router.post( '/users/adduser', ( req,res ) => {
 } );
 
 //get all users
-router.get( '/users', ( req,res ) => {
-    userSchema
-        .find()
-        .then( (data) => res.json(data) )
-        .catch( (error) => res.json( {message: error} ) );
-} );
+// router.get( '/users', ( req,res ) => {
+//     userSchema
+//         .find()
+//         .then( (data) => res.json(data) )
+//         .catch( (error) => res.json( {message: error} ) );
+// } );
+
+router.get('/api', (req, res) => {
+    request(
+      { url: 'https://api-clientes-production-140a.up.railway.app' },
+      (error, response, body) => {
+        if (error || response.statusCode !== 200) {
+          return res.status(500).json({ type: 'error', message: err.message });
+        }
+  
+        res.json(JSON.parse(body));
+      }
+    )
+  });
 
 //get a user
 router.get( '/users/:id', ( req,res ) => {
