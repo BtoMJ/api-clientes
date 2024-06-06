@@ -5,6 +5,7 @@ const cors = (req, res, next) => {
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE, PATCH");
     res.header("Access-Control-Request-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Request-Methods", "GET, POST, OPTIONS, PUT, DELETE, PATCH");
+    res.header("Access-Control-Expose-Headers", "*");
     next();
 };
 
