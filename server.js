@@ -10,11 +10,11 @@ const app = express();
 
 const port = process.env.PORT || 3001;
 
-const corsOptions ={
-    origin:'https://abyclientes-production.up.railway.app/', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
+// const corsOptions ={
+//     origin:'https://abyclientes-production.up.railway.app/', 
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+// }
 
 
 //middleware
@@ -23,7 +23,7 @@ app.use( '/api', userRoutes );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: 'true'} ) );
 app.use(corConfig);
-app.use(cors(corsOptions));
+app.use(cors());
 
 mongoose.set('strictQuery', false);
 
