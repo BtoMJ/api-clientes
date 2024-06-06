@@ -21,7 +21,7 @@ app.use(cors());
 
 app.get('/api', (req, res) => {
     request(
-      { url: 'https://api-clientes-production-140a.up.railway.app/api/users' },
+      { url: 'https://api-clientes-production-140a.up.railway.app' },
       (error, response, body) => {
         if (error || response.statusCode !== 200) {
           return res.status(500).json({ type: 'error', message: err.message });
