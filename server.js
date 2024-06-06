@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
-// const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/user');
 const bodyParser = require('body-parser');
 const corConfig = require("./config/cors");
 const cors = require("cors");
@@ -10,6 +10,12 @@ const app = express();
 
 const port = process.env.PORT || 3001;
 
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+
 
 //middleware
 app.use( express.json() );
@@ -17,7 +23,7 @@ app.use( '/api', userRoutes );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: 'true'} ) );
 app.use(corConfig);
-app.use(cors());
+app.use(cors(corsOptions));
 
 mongoose.set('strictQuery', false);
 
